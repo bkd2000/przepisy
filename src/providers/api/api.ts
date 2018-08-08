@@ -10,8 +10,22 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
+  private API_URL: string='https://przepisy.coio.pl/wp-json/wp/v2/';
+  public Categories:any = [];
+
   constructor(public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
+  }
+
+  get(query:string = ''){
+    return this.http.get(this.API_URL + query);
+  }
+
+  getCategories(){
+    this.get('categories').subscribe((data) => {
+      this.Categories = data;
+
+    });
   }
 
 }
