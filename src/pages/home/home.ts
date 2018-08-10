@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { DetailPage } from '../detail/detail';
+import { SearchPage } from '../search/search';
 
 @Component({
   selector: 'page-home',
@@ -10,41 +11,50 @@ import { DetailPage } from '../detail/detail';
 export class HomePage {
 
   public items:any = [];
-  private per_page:number = 5;
-  private page:number = 1;
-  private showLoadMore = true;
+  private per_page:number = 2;
+  public page:number = 1;
+  public showLoadMore = true;
+  private category_id:number = 0;
+  public isLoading = false;
 
   constructor(public navCtrl: NavController, public api:ApiProvider, public navParms: NavParams) {
-    console.log(this.navParms.get('cat_id'));
+    if(this.navParms.get('cat_id')!=null && this.navParms.get('cat_id')!= undefined){
+      this.category_id = this.navParms.get('cat_id');
+    }
     this.getPosts();
 
   }
 
-  getPosts(){
-    this.api.get('posts?_embed&per_page=' + this.per_page + '&page=' + this.page)
-    .subscribe((data) =>{
-      this.items = this.items.concat(data);
-      this.page++;
-    }, (error) => {
-      if(error.error.code==="rest_post_invalid_page_number"){
-        this.showLoadMore = false;
-      }
-      console.log(error);
+  getPosts(infiniteScroll = null) {
+    if (!this.isLoading) {
+      this.isLoading=true;
+      this.api.get('posts?_embed&per_page=' + this.per_page + '&page=' + this.page + (this.category_id != 0 ? '&categories=' + this.category_id : ''))
+        .subscribe((data:any) => {
+          this.isLoading=false;
+          this.items = this.items.concat(data);
+          if(data.length === this.per_page){
+            this.page++;
+          }
 
-    });
+          if (infiniteScroll != null) {
+            infiniteScroll.complete();
+          }
+        }, (error) => {
+          this.isLoading=false;
+
+          if (infiniteScroll != null) {
+            infiniteScroll.complete();
+          }
+
+        });
+    }
   }
 
   openDetail(item){
     this.navCtrl.push(DetailPage, {post: item});
   }
 
-  getCatName(cat_id:number){
-    let cat_name:string = '';
-    this.api.Categories.forEach(element => {
-      if (element.id==cat_id) {
-        cat_name = element.name;
-      }
-    });
-    return cat_name;
+  openSearchPage(){
+    this.navCtrl.push(SearchPage);
   }
 }

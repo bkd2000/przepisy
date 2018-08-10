@@ -28,4 +28,14 @@ export class ApiProvider {
     });
   }
 
+  getCatName(cat_id:number){
+    let cat_name:string = '';
+    this.Categories.forEach(element => {
+      if (element.id==cat_id) {
+        cat_name = element.name;
+      }
+    });
+    return cat_name;
+  }
+
 }

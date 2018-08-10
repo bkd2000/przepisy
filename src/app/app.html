@@ -1,12 +1,15 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
+      <button menuClose ion-item (click)="openPage(0)">
+        Wszystkie
+      </button>
       <button menuClose ion-item *ngFor="let cat of api.Categories" (click)="openPage(cat.id)">
         {{cat.name}}
       </button>

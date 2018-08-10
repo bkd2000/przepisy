@@ -1,9 +1,12 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Przepisy COiO</ion-title>
+    <ion-buttons end>
+      <button icon-only ion-button (click)="openSearchPage()"><ion-icon name="search"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,16 +19,21 @@
         </ion-card-title>
         <ion-row>
           <ion-badge>
-            {{getCatName(item.categories[0])}}
+            {{api.getCatName(item.categories[0])}}
           </ion-badge>
           <ion-badge *ngIf="item.categories[1]">
-            {{getCatName(item.categories[1])}}
+            {{api.getCatName(item.categories[1])}}
           </ion-badge>
           <ion-badge *ngIf="item.categories[2]">
-            {{getCatName(item.categories[2])}}
+            {{api.getCatName(item.categories[2])}}
           </ion-badge>
         </ion-row>
     </ion-card-content>
   </ion-card>
-  <button *ngIf="showLoadMore" ion-button full (click)="getPosts()">Więcej przepisów</button>
+  <div *ngIf="isLoading && page===1" text-center padding>
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="getPosts($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

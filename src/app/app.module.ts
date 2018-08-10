@@ -9,23 +9,32 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { DetailPage } from '../pages/detail/detail';
+import { SearchPage } from '../pages/search/search';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    DetailPage
+    DetailPage,
+    SearchPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      platforms: {
+        ios: {
+          backButtonText: ''
+        }
+      }
+    }),
     HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    DetailPage
+    DetailPage,
+    SearchPage
   ],
   providers: [
     StatusBar,
