@@ -11,7 +11,7 @@ import { SearchPage } from '../search/search';
 export class HomePage {
 
   public items:any = [];
-  private per_page:number = 2;
+  private per_page:number = 5;
   public page:number = 1;
   public showLoadMore = true;
   private category_id:number = 0;

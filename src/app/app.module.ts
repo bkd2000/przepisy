@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,7 +29,7 @@ import { SearchPage } from '../pages/search/search';
       }
     }),
     HttpClientModule
-  ],
+    ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -40,7 +41,7 @@ import { SearchPage } from '../pages/search/search';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiProvider
+    ApiProvider, SocialSharing
   ]
 })
 export class AppModule {}
