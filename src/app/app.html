@@ -13,6 +13,9 @@
       <button menuClose ion-item *ngFor="let cat of api.Categories" (click)="openPage(cat.id)">
         {{cat.name}}
       </button>
+      <button menuClose ion-item (click)="openPoradnie()">
+        Poradnie COiO
+      </button>
     </ion-list>
   </ion-content>
 

@@ -6,13 +6,33 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>poradnie</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Poradnie ze Znakiem Jakości COiO</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-card *ngFor="let poradnia of Poradnie">
+
+    <ion-card-header>
+      <div class="nazwa">
+        <h2>Poradnia Odchudzania i Odżywiania</h2>
+        <span class="wlasna">{{poradnia.acf["krotka-nazwa"]}}</span>
+      </div>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-icon item-start name="pin"></ion-icon>
+        <span item-end [innerHTML]="poradnia.acf.dane_adresowe"></span>
+
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
 
 </ion-content>

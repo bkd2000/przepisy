@@ -23,6 +23,7 @@ export class HomePage {
     }
     this.getPosts();
 
+
   }
 
   getPosts(infiniteScroll = null) {

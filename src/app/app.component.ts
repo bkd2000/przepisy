@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ApiProvider } from '../providers/api/api';
+import { PoradniePage } from '../pages/poradnie/poradnie';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,5 +35,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(HomePage,{cat_id: cat_id});
+  }
+
+  openPoradnie(){
+    this.nav.setRoot(PoradniePage);
   }
 }

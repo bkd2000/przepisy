@@ -12,7 +12,7 @@ export class ApiProvider {
 
   private API_URL: string='https://przepisy.coio.pl/wp-json/wp/v2/';
   public Categories:any = [];
-  public Poradnie:any = [];
+
 
   constructor(public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
@@ -40,11 +40,10 @@ export class ApiProvider {
   }
 
   getPoradnie(){
-    this.http.get("https://coio.pl/wp-json/acf/v3/poradnie").subscribe((data) => {
-      this.Poradnie = data;
-      console.log(this.Poradnie);
+   return  this.http.get("https://coio.pl/wp-json/acf/v3/poradnie?per_page=30&orderby=acf.region");
 
-    });
+
+
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the PoradniePage page.
@@ -8,18 +9,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-poradnie',
   templateUrl: 'poradnie.html',
 })
 export class PoradniePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public Poradnie:any = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider) {
+    this.getWszystkiePoradnie();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PoradniePage');
+  }
+
+  getWszystkiePoradnie(){
+    this.api.getPoradnie().subscribe((data) => {
+      this.Poradnie = data;
+
+    })
   }
 
 }
