@@ -11,13 +11,15 @@ import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { DetailPage } from '../pages/detail/detail';
 import { SearchPage } from '../pages/search/search';
+import { PoradniePage } from '../pages/poradnie/poradnie';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     DetailPage,
-    SearchPage
+    SearchPage,
+    PoradniePage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { SearchPage } from '../pages/search/search';
     MyApp,
     HomePage,
     DetailPage,
-    SearchPage
+    SearchPage,
+    PoradniePage
   ],
   providers: [
     StatusBar,
