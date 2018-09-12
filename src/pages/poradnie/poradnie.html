@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Poradnie ze Znakiem Jakości COiO</ion-title>
+    <ion-title>Poradnie w Polsce</ion-title>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
@@ -28,7 +31,14 @@
       <ion-item>
         <ion-icon item-start name="pin"></ion-icon>
         <span item-end [innerHTML]="poradnia.acf.dane_adresowe"></span>
-
+      </ion-item>
+      <ion-item>
+          <ion-icon item-start name="call"></ion-icon>
+          <span item-end (click)=launchDialer(poradnia.acf.telefon)>{{poradnia.acf.telefon}}</span>
+      </ion-item>
+      <ion-item>
+          <ion-icon item-start name="link"></ion-icon>
+          <a item-end class="link" href="#" (click)=openLink(poradnia.acf.adres_oficjalny)>{{poradnia.acf.adres_oficjalny}}</a>
       </ion-item>
 
     </ion-card-content>

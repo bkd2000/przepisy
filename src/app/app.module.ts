@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { CallNumber } from '@ionic-native/call-number'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -44,7 +45,8 @@ import { PoradniePage } from '../pages/poradnie/poradnie';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiProvider, SocialSharing
+    ApiProvider, SocialSharing,
+    CallNumber
   ]
 })
 export class AppModule {}

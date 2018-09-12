@@ -32,6 +32,11 @@
   </ion-card>
   <div *ngIf="isLoading && page===1" text-center padding>
     <ion-spinner></ion-spinner>
+    <ion-card>
+        <ion-card-content>
+          Ładuję dla Ciebie najlepsze przepisy...
+        </ion-card-content>
+    </ion-card>
   </div>
   <ion-infinite-scroll (ionInfinite)="getPosts($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
